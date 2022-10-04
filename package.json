@@ -1,0 +1,17 @@
+{
+  "name": "iwcbot",
+  "version": "1.0.0",
+  "description": "A bot for calculating time until winter and determining whether or not winter is finna come",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julian Smith",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0"
+  }
+}
