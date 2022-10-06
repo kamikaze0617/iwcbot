@@ -11,6 +11,10 @@ module.exports = {
 	async execute(interaction) {          
         const player = createAudioPlayer();
 
+        if (interaction.member.voice.channel == null) {
+            interaction.reply("Join a voice channel you scrungoloid");
+        }
+
         const connection = joinVoiceChannel({
             channelId: interaction.member.voice.channel.id,
             guildId: interaction.channel.guild.id,
@@ -35,6 +39,8 @@ module.exports = {
             setTimeout(() => connection.destroy(), 18_000);
         }
         player.play(resource); 
+
+        
 
         interaction.reply('Legalize Nuclear Bombs ☢️ Swag Messiah 🐝 Bees Make Honey 💯 Real Trap Shit');
 	},

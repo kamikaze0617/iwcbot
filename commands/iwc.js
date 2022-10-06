@@ -19,7 +19,7 @@ module.exports = {
         if (duration > 0) {
 		    await interaction.reply('YES. Winter is coming: ' + duration + ' days remain.');
         } else {
-            await interaction.reply("NO. Winter FUCKING CAME and is here. So SPRING is COMING: " + daysOfWinter + ' days.');
+            await interaction.reply("NO. Winter **FUCKING CAME** and is here. So now **SPRING IS COMING:** " + daysOfWinter + ' days remain.');
         }
 	},
 };
