@@ -21,8 +21,9 @@ module.exports = {
             adapterCreator: interaction.channel.guild.voiceAdapterCreator,
         });
 
-        var i = Math.floor((Math.random() * 10) + 1);
+        var i = Math.floor((Math.random() * 10) + 2);
         const resource = createAudioResource(`./resources/sounds/randomsound/IWCBot_${i}.ogg`);
+
 
         const subscription = connection.subscribe(player);
 
