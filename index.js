@@ -3,7 +3,6 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token, wicChannelId } = require('./config.json')
 const cron = require('cron');
-const iwc = require('./commands/iwc');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
@@ -23,11 +22,9 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-// Below cron job will display an update on time until winter begins
+// Below cron job will display an update every day at 6:00 am
 let dailyIWC = new cron.CronJob('00 06 * * *', () => {
 	console.log(`Cron job started`)
-
-	// if (!callCommand) return;
 
 	const channel = client.channels.cache.get(wicChannelId);
 	console.log(`Got channel`)
@@ -48,8 +45,7 @@ let dailyIWC = new cron.CronJob('00 06 * * *', () => {
         } else {
             channel.send("NO. Winter **FUCKING CAME** and is here. So now **SPRING IS COMING:** " + daysOfWinter + ' days remain.');
         }
-		channel.send();
-		console.log(`Called command`)
+		console.log(`Sent duration info`)
 	} catch (error) {
 		console.error(error);
 		channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
