@@ -6,8 +6,8 @@ const {
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('swagmessiah')
-		.setDescription('Replies with shitpost'),
+		.setName('randomsound')
+		.setDescription('Joins channel and plays random epic sound'),
 	async execute(interaction) {          
         const player = createAudioPlayer();
 
@@ -21,12 +21,8 @@ module.exports = {
             adapterCreator: interaction.channel.guild.voiceAdapterCreator,
         });
 
-        
-        const resource = createAudioResource('./resources/sounds/swagmessiah/IWCBot_Shitpost_OGG.ogg', {
-            metadata: {
-                title: 'A CERTIFIED HOOD CLASSIC!!! LEGALIZE NUCLEAR BOMBS',
-            },
-        });
+        var i = Math.floor((Math.random() * 10) + 1);
+        const resource = createAudioResource(`./resources/sounds/randomsound/IWCBot_${i}.ogg`);
 
         const subscription = connection.subscribe(player);
 
@@ -36,12 +32,12 @@ module.exports = {
             //setTimeout(() => subscription.unsubscribe(), 5_000);
 
             // Destroy con after 18 seconds
-            setTimeout(() => connection.destroy(), 18_000);
+            setTimeout(() => connection.destroy(), 5_000);
         }
         player.play(resource); 
 
         
 
-        interaction.reply('Legalize Nuclear Bombs ☢️ Swag Messiah 🐝 Bees Make Honey 💯 Real Trap Shit');
+        interaction.reply('epic random noise requested...');
 	},
 };
