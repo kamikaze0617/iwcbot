@@ -1,7 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json')
+const { token, wicChannelId } = require('./config.json')
+const cron = require('cron');
+const iwc = require('./commands/iwc');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
@@ -20,6 +22,41 @@ for (const file of commandFiles) {
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
+
+// Below cron job will display an update on time until winter begins
+let dailyIWC = new cron.CronJob('00 06 * * *', () => {
+	console.log(`Cron job started`)
+
+	// if (!callCommand) return;
+
+	const channel = client.channels.cache.get(wicChannelId);
+	console.log(`Got channel`)
+
+	const dayjs = require('dayjs');
+        const now = dayjs();
+        const ws = new Date(2022, 11, 22);
+        const winterSolstice = dayjs(ws);
+        var duration = winterSolstice.diff(now, 'days')
+
+        const eow = new Date(2023, 2, 20);
+        const endOfWinter = dayjs(eow);
+        var daysOfWinter = endOfWinter.diff(now, 'days')
+
+	try {
+		if (duration > 0) {
+		    channel.send('YES. Winter is coming: ' + duration + ' days remain.');
+        } else {
+            channel.send("NO. Winter **FUCKING CAME** and is here. So now **SPRING IS COMING:** " + daysOfWinter + ' days remain.');
+        }
+		channel.send();
+		console.log(`Called command`)
+	} catch (error) {
+		console.error(error);
+		channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
+	}
+})
+
+dailyIWC.start();
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;

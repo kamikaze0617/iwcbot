@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/voice": "^0.11.0",
+    "cron": "^2.1.0",
     "dayjs": "^1.11.5",
     "discord.js": "^14.5.0",
     "libsodium-wrappers": "^0.7.10"
