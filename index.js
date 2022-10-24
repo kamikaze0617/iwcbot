@@ -24,7 +24,7 @@ client.on("ready", () => {
 
 // Below cron job will display an update every day at 6:00 am
 let dailyIWC = new cron.CronJob('00 06 * * *', () => {
-	console.log(`Cron job started`)
+	console.log(`Daily time until winter update initiated`)
 
 	const channel = client.channels.cache.get(wicChannelId);
 	console.log(`Got channel`)
@@ -41,11 +41,11 @@ let dailyIWC = new cron.CronJob('00 06 * * *', () => {
 
 	try {
 		if (duration > 0) {
-		    channel.send('YES. Winter is coming: ' + duration + ' days remain.');
+		    channel.send('~ ❄️𝔽𝕖𝕝𝕝𝕒𝕫 𝔻𝕒𝕚𝕝𝕪 𝕀𝕞𝕡𝕖𝕟𝕕𝕚𝕟𝕘 𝕎𝕚𝕟𝕥𝕖𝕣 𝕌𝕡𝕕𝕒𝕥𝕖❄️ ~ \nWinter is coming: ' + duration + ' days remain.');
         } else {
             channel.send("NO. Winter **FUCKING CAME** and is here. So now **SPRING IS COMING:** " + daysOfWinter + ' days remain.');
         }
-		console.log(`Sent duration info`)
+		console.log(`Sent daily time until winter info`)
 	} catch (error) {
 		console.error(error);
 		channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
