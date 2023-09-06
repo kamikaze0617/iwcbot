@@ -8,11 +8,11 @@ module.exports = {
 	async execute(interaction) {
         const dayjs = require('dayjs');
         const now = dayjs();
-        const ws = new Date(2023, 12, 21);
+        const ws = new Date(2023, 11, 21);
         const winterSolstice = dayjs(ws);
         var duration = winterSolstice.diff(now, 'days')
 
-        const eow = new Date(2024, 3, 19);
+        const eow = new Date(2024, 2, 19);
         const endOfWinter = dayjs(eow);
         var daysOfWinter = endOfWinter.diff(now, 'days')
 
