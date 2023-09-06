@@ -24,28 +24,27 @@ client.on("ready", () => {
 
 // Below cron job will display an update every day at 6:00 am
 let dailyIWC = new cron.CronJob('00 06 * * *', () => {
-	console.log(`Daily time until winter update initiated`)
+	console.log(`Starting daily update`)
 
 	const channel = client.channels.cache.get(wicChannelId);
-	console.log(`Got channel`)
 
 	const dayjs = require('dayjs');
         const now = dayjs();
-        const ws = new Date(2022, 11, 22);
+        const ws = new Date(2023, 12, 21);
         const winterSolstice = dayjs(ws);
         var duration = winterSolstice.diff(now, 'days')
 
-        const eow = new Date(2023, 2, 20);
+        const eow = new Date(2024, 3, 19);
         const endOfWinter = dayjs(eow);
         var daysOfWinter = endOfWinter.diff(now, 'days')
 
 	try {
 		if (duration > 0) {
-		    channel.send('~ ❄️𝔽𝕖𝕝𝕝𝕒𝕫 𝔻𝕒𝕚𝕝𝕪 𝕀𝕞𝕡𝕖𝕟𝕕𝕚𝕟𝕘 𝕎𝕚𝕟𝕥𝕖𝕣 𝕌𝕡𝕕𝕒𝕥𝕖❄️ ~ \nWinter is coming: ' + duration + ' days remain.');
+		    channel.send('~ ❄️𝔽𝕖𝕝𝕝𝕒𝕫 𝔻𝕒𝕚𝕝𝕪 𝕀𝕞𝕡𝕖𝕟𝕕𝕚𝕟𝕘 𝕎𝕚𝕟𝕥𝕖𝕣 𝕌𝕡𝕕𝕒𝕥𝕖❄️ ~ \nWinter is coming: ' + duration + ' days remain.\n');
         } else {
-            channel.send("NO. Winter **FUCKING CAME** and is here. So now **SPRING IS COMING:** " + daysOfWinter + ' days remain.');
+            channel.send("~ ❄️𝔽𝕖𝕝𝕝𝕒𝕫 𝔻𝕒𝕚𝕝𝕪 𝔼𝕟𝕕𝕦𝕣𝕚𝕟𝕘 𝕎𝕚𝕟𝕥𝕖𝕣 𝕌𝕡𝕕𝕒𝕥𝕖❄️ ~ \n Winter is **HERE**. So now **SPRING IS COMING:** " + (daysOfWinter + 1) + ' days of winter remain. ');
         }
-		console.log(`Sent daily time until winter info`)
+		console.log(`Daily update sent`)
 	} catch (error) {
 		console.error(error);
 		channel.send({ content: 'There was an error while executing this command!', ephemeral: true });
